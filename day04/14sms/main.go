@@ -15,7 +15,19 @@ type student struct {
 	name string
 }
 
+//	构造函数
+func newStudent(id int64, name string) student {
+	return student{
+		id:   id,
+		name: name,
+	}
+}
+
+//	定义全局变量
+var allStudents map[int64]string
+
 func main() {
+	allStudents = make(map[int64]string, 48) //	变量初始化
 	for {
 		//	1. 打印菜单
 		fmt.Println("欢迎使用学生管理系统")
@@ -47,11 +59,42 @@ func main() {
 }
 
 func showAllStudent() {
-
+	//	循环遍历 map
+	for k, v := range allStudents {
+		fmt.Printf("学号：%v, 姓名: %v\n", k, v)
+	}
 }
 func addStudent() {
-
+	var (
+		id   int64
+		name string
+	)
+	//	1.获取用户输入
+	fmt.Println("请输入用户学号：")
+	fmt.Scanln(&id)
+	fmt.Println("请输入用户姓名：")
+	fmt.Scanln(&name)
+	//	2.使用 student 的构造函数
+	newStu := newStudent(id, name)
+	//	3.判断新增的学号在原来 map 中是否存在
+	_, ok := allStudents[id]
+	if ok {
+		fmt.Println("该学号已经存在！")
+		return
+	} else {
+		allStudents[id] = newStu.name
+	}
 }
 func deleteStudent() {
-
+	//	获取用户输入
+	var id int64
+	fmt.Println("请输入需要删除的学生学号：")
+	fmt.Scanln(&id)
+	//	判断学号是否存在
+	_, ok := allStudents[id]
+	if ok {
+		delete(allStudents, id)
+	} else {
+		fmt.Println("该学生不存在！请重试")
+	}
 }
