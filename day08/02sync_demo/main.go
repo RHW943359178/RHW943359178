@@ -14,7 +14,7 @@ var lock sync.Mutex
 func add() {
 	for i := 0; i < 5000; i++ {
 		lock.Lock()
-		x ++
+		x++
 		lock.Unlock()
 	}
 	wg.Done()

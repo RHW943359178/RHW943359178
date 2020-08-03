@@ -51,8 +51,8 @@ func main() {
 		wg.Add(1)
 		go func(n int) {
 			key := strconv.Itoa(n)
-			m2.Store(key, n)	//	必须使用sync.Map内置的Store方法设置键值对
-			value, ok := m2.Load(key)	//	必须使用sync.Map内置的Load方法根据key取值
+			m2.Store(key, n)          //	必须使用sync.Map内置的Store方法设置键值对
+			value, ok := m2.Load(key) //	必须使用sync.Map内置的Load方法根据key取值
 			if ok {
 				fmt.Printf("k=%v, v=%v\n", key, value)
 			}

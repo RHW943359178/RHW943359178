@@ -7,9 +7,9 @@ import (
 )
 
 var (
-	x    = 0
-	wg sync.WaitGroup
-	lock sync.Mutex
+	x     = 0
+	wg    sync.WaitGroup
+	lock  sync.Mutex
 	rLock sync.RWMutex
 )
 

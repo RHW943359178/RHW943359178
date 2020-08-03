@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	x int64
-	wg sync.WaitGroup
+	x    int64
+	wg   sync.WaitGroup
 	lock sync.Mutex
 )
 

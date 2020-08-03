@@ -15,17 +15,17 @@ func main() {
 		return
 	}
 	for {
-		conn, err := listener.Accept()	//	建立连接
+		conn, err := listener.Accept() //	建立连接
 		if err != nil {
 			fmt.Println("connect err: ", err)
 			break
 		}
-		go connect(conn)	//	起一个goroutine
+		go connect(conn) //	起一个goroutine
 	}
 }
 
 func connect(conn net.Conn) {
-	defer conn.Close()	//	关闭连接
+	defer conn.Close() //	关闭连接
 	for {
 		var buf [128]byte
 		reader := bufio.NewReader(conn)
