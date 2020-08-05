@@ -1,0 +1,6 @@
+mode: set
+RHW943359178/day09/split_string/split.go:9.45,13.17 3 1
+RHW943359178/day09/split_string/split.go:21.2,22.12 2 1
+RHW943359178/day09/split_string/split.go:13.17,15.24 1 1
+RHW943359178/day09/split_string/split.go:18.3,19.34 2 1
+RHW943359178/day09/split_string/split.go:15.24,17.4 1 1
