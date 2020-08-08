@@ -128,6 +128,27 @@ func deleteRow(id int) {
 	fmt.Printf("删除了%d行数据\n", n)
 }
 
+//	预处理方式插入多条数据
+func prepareInsert() {
+	sqlStr := `insert into user(name, age) values(?, ?)`
+	stmt, err := db.Prepare(sqlStr) //	把sql语句先发给Mysql预处理一下
+	if err != nil {
+		fmt.Printf("prepare failed, err: %v\n", err)
+		return
+	}
+	defer stmt.Close()
+	//	后续只需要拿到stmt去执行一些操作
+	var m = map[string]int{
+		"张三": 15,
+		"李四": 20,
+		"王五": 25,
+		"李六": 30,
+	}
+	for k, v := range m {
+		stmt.Exec(k, v) //	后续只需要传值
+	}
+}
+
 func main() {
 	err := initDB()
 	if err != nil {
@@ -138,5 +159,6 @@ func main() {
 	//queryMore(2)
 	//insert()
 	//updateRow(39, 5)
-	deleteRow(5)
+	//deleteRow(5)
+	prepareInsert()
 }
